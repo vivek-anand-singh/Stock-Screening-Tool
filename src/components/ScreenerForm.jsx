@@ -3,6 +3,7 @@ import { useState } from "react";
 import { stockData } from "../data/stockData";
 import { applyFilters } from "../utils/filterUtils";
 import ResultsTable from "./ResultsTable";
+import StockMetrics from "./StockMetrics";
 
 export default function ScreenerForm() {
   const [query, setQuery] = useState("");
@@ -56,7 +57,7 @@ export default function ScreenerForm() {
         </button>
       </div>
     </form>
-    {filteredStocks.length > 0 && <ResultsTable data={filteredStocks} />}
+    {filteredStocks.length > 0 ? <ResultsTable data={filteredStocks} /> : <StockMetrics />}
   </div>
   
   );
