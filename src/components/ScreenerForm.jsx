@@ -1,11 +1,10 @@
-// src/components/ScreenerForm.jsx
 import { useState } from "react";
 import { stockData } from "../data/stockData";
 import { applyFilters } from "../utils/filterUtils";
 import ResultsTable from "./ResultsTable";
 import StockMetrics from "./StockMetrics";
 
-export default function ScreenerForm() {
+const ScreenerForm = () => {
   const [query, setQuery] = useState("");
   const [filteredStocks, setFilteredStocks] = useState([]);
 
@@ -38,27 +37,29 @@ export default function ScreenerForm() {
       return { parameter, operator, value };
     });
   }
+
   return (
-    <div>
-    <form onSubmit={handleSubmit} className="mb-6">
-      <div className="flex gap-2 items-center mb-4">
-        <input
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          className="border px-3 py-10 rounded w-full"
-          placeholder="Enter your query (e.g., Market Capitalization > 10000 AND ROE > 15 AND P/E Ratio < 20)"
-        />
-        <button
-          type="submit"
-          className="bg-green-500 text-white px-4 py-2 rounded"
-        >
-          Apply Filters
-        </button>
-      </div>
-    </form>
-    {filteredStocks.length > 0 ? <ResultsTable data={filteredStocks} /> : <StockMetrics />}
-  </div>
-  
+    <div className="bg-white shadow-md rounded-lg p-6">
+      <form onSubmit={handleSubmit} className="mb-6">
+        <div className="flex gap-4 items-center">
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            className="flex-1 px-4 py-2 border border-black m-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            placeholder="Enter your query (e.g., Market Capitalization > 10000 AND ROE > 15 AND P/E Ratio < 20)"
+          />
+          <button
+            type="submit"
+            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg"
+          >
+            Apply Filters
+          </button>
+        </div>
+      </form>
+      {filteredStocks.length > 0 ? <ResultsTable data={filteredStocks} /> : <StockMetrics />}
+    </div>
   );
-}
+};
+
+export default ScreenerForm;

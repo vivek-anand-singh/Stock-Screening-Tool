@@ -1,8 +1,8 @@
 import React from 'react';
 
-export default function StockMetrics() {
+const StockMetrics = () => {
   return (
-    <div className="bg-white shadow-md rounded-lg p-6 max-w-xl mx-auto my-6">
+    <div className="bg-white shadow-md rounded-lg p-6">
       <div className="text-gray-700 space-y-4">
         <p className="text-lg font-semibold">Stock Metrics Comparison</p>
         <p>To compare stocks on certain metrics, you can use the following keywords:</p>
@@ -34,4 +34,6 @@ export default function StockMetrics() {
       </div>
     </div>
   );
-}
+};
+
+export default StockMetrics;

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { stockMetrics } from '../utils/filterUtils';
 import { parameters } from '../data/stockData';
 
-export default function ResultsTable({ data }) {
+const ResultsTable = ({ data }) => {
   const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
@@ -32,30 +32,30 @@ export default function ResultsTable({ data }) {
   const totalPages = Math.ceil(data.length / itemsPerPage);
 
   return (
-    <div>
+    <div className="bg-white shadow-md rounded-lg p-6">
       <div className="overflow-x-auto">
-        <table className="min-w-full bg-white border">
+        <table className="w-full table-auto">
           <thead>
-            <tr>
+            <tr className="bg-gray-100">
               {Object.values(stockMetrics).map((metric, index) => (
-                  <th
+                <th
                   key={index}
                   onClick={() => handleSort(Object.keys(stockMetrics)[index])}
-                  className="cursor-pointer border p-2 bg-gray-100"
-                  >
+                  className="cursor-pointer px-4 py-3 border-b text-left font-medium text-gray-700"
+                >
                   {metric}
                   {sortConfig.key === Object.keys(stockMetrics)[index] && (
-                      <span>{sortConfig.direction === 'asc' ? ' ↑' : ' ↓'}</span>
-                    )}
+                    <span className="ml-2">{sortConfig.direction === 'asc' ? '▲' : '▼'}</span>
+                  )}
                 </th>
               ))}
             </tr>
           </thead>
           <tbody>
             {currentItems.map((stock, index) => (
-              <tr key={index}>
+              <tr key={index} className={`${index % 2 === 0 ? 'bg-gray-50' : ''} hover:bg-gray-100`}>
                 {Object.values(stockMetrics).map((metric, index) => (
-                  <td key={index} className="border p-2">
+                  <td key={index} className="px-4 py-3 border-b text-gray-700">
                     {stock[metric]}{parameters[index].unit}
                   </td>
                 ))}
@@ -65,25 +65,27 @@ export default function ResultsTable({ data }) {
         </table>
       </div>
 
-      <div className="mt-4 flex justify-center gap-2">
+      <div className="mt-6 flex justify-center gap-4">
         <button
           onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
           disabled={currentPage === 1}
-          className="px-3 py-1 border rounded disabled:opacity-50"
+          className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded disabled:opacity-50"
         >
           Previous
         </button>
-        <span className="px-3 py-1">
+        <span className="px-4 py-2 bg-gray-100 rounded text-gray-700">
           Page {currentPage} of {totalPages}
         </span>
         <button
           onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
           disabled={currentPage === totalPages}
-          className="px-3 py-1 border rounded disabled:opacity-50"
+          className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded disabled:opacity-50"
         >
           Next
         </button>
       </div>
     </div>
   );
-}
+};
+
+export default ResultsTable;
