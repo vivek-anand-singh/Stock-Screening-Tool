@@ -47,7 +47,7 @@ const ScreenerForm = () => {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             className="flex-1 px-4 py-2 border border-black m-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-            placeholder="Enter your query (e.g., Market Capitalization > 10000 AND ROE > 15 AND P/E Ratio < 20)"
+            placeholder="Enter your query (e.g., Market Capitalization > 100 AND ROE > 15 AND P/E Ratio < 20)"
           />
           <button
             type="submit"

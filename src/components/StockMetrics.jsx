@@ -26,7 +26,7 @@ const StockMetrics = () => {
           <p>If you want sample data, press enter without any query in the input field.</p>
           <p className="mt-2">To filter the data, you can use the following query format:</p>
           <div className="mt-2 space-y-1 text-gray-600">
-            <p className="font-medium">Market Capitalization &gt; 10000</p>
+            <p className="font-medium">Market Capitalization &gt; 100</p>
             <p className="font-medium">ROE &gt; 15</p>
             <p className="font-medium">P/E Ratio &lt; [value]</p>
           </div>
